@@ -2,8 +2,6 @@ use copypasta::ClipboardProvider;
 use eframe::egui;
 use egui::ScrollArea;
 
-use egui::{Context, FontDefinitions};  // 字体需要
-
 use super::{
     ui_colors::{BACKGROUND_COLOR, EXTRA_BACKGROUND_COLOR},
     MyEguiApp,
@@ -15,19 +13,21 @@ impl MyEguiApp {
     pub(crate) fn render_settings(&mut self, ui: &mut egui::Ui) {
         ui.heading("设置");
 
-        // 在创建 Context 时设置字体路径
-        let mut ctx = Context::create_with_defaults();
-        let font_definitions = FontDefinitions::default()
-            .family("../font.ttf")  // 替换成你的中文字体文件的路径
-            .size(16.0);  // 设置字体大小
-        ctx.set_fonts(font_definitions);
-
         let mut scroll_style = ui.style_mut();
         scroll_style.visuals.extreme_bg_color = BACKGROUND_COLOR;
         scroll_style.visuals.widgets.inactive.bg_fill = EXTRA_BACKGROUND_COLOR;
         scroll_style.visuals.widgets.active.bg_fill = EXTRA_BACKGROUND_COLOR;
         scroll_style.visuals.selection.bg_fill = EXTRA_BACKGROUND_COLOR;
         scroll_style.visuals.widgets.hovered.bg_fill = EXTRA_BACKGROUND_COLOR;
+
+        // 创建 FontDefinitions 并设置中文字体路径
+        let font_definitions = egui::FontDefinitions::default()
+            .family("../font.ttf")  // 替换成你的中文字体文件的路径
+            .size(16.0);  // 设置字体大小
+
+        // 创建 Context 时传递 FontDefinitions
+        let mut ctx = egui::Context::create_with_defaults();
+        ctx.set_fonts(font_definitions);
 
         ScrollArea::vertical()
             .stick_to_right(true)
