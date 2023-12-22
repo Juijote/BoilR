@@ -125,17 +125,17 @@ impl MyEguiApp {
         if all_ready && !syncing {
             if ui
                 .add(image_button)
-                .on_hover_text("Import your games into steam")
+                .on_hover_text("将你的游戏导入 Steam")
                 .clicked()
             {
                 if let Err(err) = save_settings(&self.settings, &self.platforms){
-                    eprintln!("Failed to save settings {err:?}");
+                    eprintln!("保存设置失败 {err:?}");
                 }
                 self.run_sync_async();
             }
         } else {
             ui.add(image_button)
-                .on_hover_text("Waiting for sync to finish");
+                .on_hover_text("等待同步完成");
         }
     }
 }
