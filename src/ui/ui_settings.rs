@@ -70,7 +70,7 @@ impl MyEguiApp {
         .on_hover_text("Stops Steam if it is running when import starts");
         ui.checkbox(
             &mut self.settings.steam.start_steam,
-            "Start Steam after import",
+            "导入后启动 Steam",
         )
         .on_hover_text("Starts Steam is it is not running after the import");
         ui.add_space(SECTION_SPACING);
