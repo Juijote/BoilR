@@ -95,15 +95,15 @@ impl MyEguiApp {
     fn render_import_button(&mut self, ui: &mut egui::Ui) {
         let (status_string, syncing) = match &*self.status_reciever.borrow() {
             SyncProgress::NotStarted => ("".to_string(), false),
-            SyncProgress::Starting => ("Starting Import".to_string(), true),
+            SyncProgress::Starting => ("开始导入".to_string(), true),
             SyncProgress::FoundGames { games_found } => {
-                (format!("Found {games_found} games to  import"), true)
+                (format!("找到要导入的 {games_found} 个游戏"), true)
             }
-            SyncProgress::FindingImages => ("Searching for images".to_string(), true),
+            SyncProgress::FindingImages => ("搜索镜像".to_string(), true),
             SyncProgress::DownloadingImages { to_download } => {
-                (format!("Downloading {to_download} images "), true)
+                (format!("正在下载 {to_download} 镜像 "), true)
             }
-            SyncProgress::Done => ("Done importing games".to_string(), false),
+            SyncProgress::Done => ("完成导入游戏".to_string(), false),
         };
         if syncing {
             ui.ctx().request_repaint();
