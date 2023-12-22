@@ -40,7 +40,7 @@ impl<T> FetcStatus<T> {
 
 impl MyEguiApp {
     pub(crate) fn render_import_games(&mut self, ui: &mut egui::Ui) {
-        ui.heading("Import Games");
+        ui.heading("导入游戏");
 
         let mut scroll_style = ui.style_mut();
         scroll_style.visuals.extreme_bg_color = BACKGROUND_COLOR;

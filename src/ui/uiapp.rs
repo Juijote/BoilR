@@ -195,27 +195,27 @@ impl App for MyEguiApp {
                 let menu_before = self.selected_menu.clone();
 
                 let mut changed = ui
-                    .selectable_value(&mut self.selected_menu, Menues::Import, "Import Games")
+                    .selectable_value(&mut self.selected_menu, Menues::Import, "导入游戏")
                     .changed();
                 if self.settings.steamgrid_db.auth_key.is_some() {
                     changed = changed
                         || ui
-                            .selectable_value(&mut self.selected_menu, Menues::Images, "Images")
+                            .selectable_value(&mut self.selected_menu, Menues::Images, "镜像")
                             .changed();
                 }
                 changed = changed
                     || ui
-                        .selectable_value(&mut self.selected_menu, Menues::Settings, "Settings")
+                        .selectable_value(&mut self.selected_menu, Menues::Settings, "设置")
                         .changed();
 
                 changed = changed
                     || ui
-                        .selectable_value(&mut self.selected_menu, Menues::Backup, "Backup")
+                        .selectable_value(&mut self.selected_menu, Menues::Backup, "备份")
                         .changed();
 
                 changed = changed
                     || ui
-                        .selectable_value(&mut self.selected_menu, Menues::Disconnect, "Disconnect")
+                        .selectable_value(&mut self.selected_menu, Menues::Disconnect, "退出")
                         .changed();
                 if self.selected_menu == Menues::Import {
                     ui.with_layout(egui::Layout::bottom_up(egui::Align::Center), |ui| {
