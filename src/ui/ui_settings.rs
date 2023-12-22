@@ -19,11 +19,14 @@ impl MyEguiApp {
         scroll_style.visuals.widgets.active.bg_fill = EXTRA_BACKGROUND_COLOR;
         scroll_style.visuals.selection.bg_fill = EXTRA_BACKGROUND_COLOR;
         scroll_style.visuals.widgets.hovered.bg_fill = EXTRA_BACKGROUND_COLOR;
+        
+        // 设置中文字体路径
+        let chinese_font_path = "../font.ttf";  // 替换成你的中文字体文件的路径
 
-        // 创建 FontDefinitions 并设置中文字体路径
+        // 创建 FontDefinitions 并设置字体路径
         let font_definitions = egui::FontDefinitions {
-            family: Some("../font.ttf".to_owned()),  // 替换成你的中文字体文件的路径
-            size: 16.0,  // 设置字体大小
+            family_and_size: egui::TextStyle::Heading.override_size(16.0),
+            font_data: std::borrow::Cow::Owned(egui::FontData::from_file(chinese_font_path).unwrap()),
             ..Default::default()
         };
 
