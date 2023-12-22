@@ -2,6 +2,8 @@ use copypasta::ClipboardProvider;
 use eframe::egui;
 use egui::ScrollArea;
 
+use egui::{Context, FontDefinitions};  // 字体需要
+
 use super::{
     ui_colors::{BACKGROUND_COLOR, EXTRA_BACKGROUND_COLOR},
     MyEguiApp,
@@ -13,26 +15,12 @@ impl MyEguiApp {
     pub(crate) fn render_settings(&mut self, ui: &mut egui::Ui) {
         ui.heading("设置");
 
-        // 获取当前工作目录
-        if let Ok(current_dir) = env::current_dir() {
-            // 构建相对路径
-            let font_path = current_dir.join("font.ttf");
-
-            // 创建一个默认的字体定义，指定自定义字体
-            let font_definitions = FontDefinitions {
-                font_data: vec![(
-                    std::fs::read(&font_path).unwrap_or_else(|_| Vec::new()),
-                    egui::FontFamily::Proportional,
-                )],
-                family_and_size: Some(TextStyle {
-                    font: egui::FontFamily::Proportional,
-                    size: 15.0,
-                }),
-                ..Default::default()
-            };
-
-            // 设置字体定义
-            ui.ctx().set_fonts(font_definitions);
+        // 在创建 Context 时设置字体路径
+        let mut ctx = Context::create_with_defaults();
+        let font_definitions = FontDefinitions::default()
+            .family("../font.ttf")  // 替换成你的中文字体文件的路径
+            .size(16.0);  // 设置字体大小
+        ctx.set_fonts(font_definitions);
 
         let mut scroll_style = ui.style_mut();
         scroll_style.visuals.extreme_bg_color = BACKGROUND_COLOR;
@@ -142,5 +130,4 @@ impl MyEguiApp {
         }
         ui.add_space(SECTION_SPACING);
     }
-}
 }
