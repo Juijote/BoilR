@@ -215,7 +215,7 @@ impl App for MyEguiApp {
 
                 changed = changed
                     || ui
-                        .selectable_value(&mut self.selected_menu, Menues::Disconnect, "退出")
+                        .selectable_value(&mut self.selected_menu, Menues::Disconnect, "断开连接")
                         .changed();
                 if self.selected_menu == Menues::Import {
                     ui.with_layout(egui::Layout::bottom_up(egui::Align::Center), |ui| {
