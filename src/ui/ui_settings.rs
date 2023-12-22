@@ -65,7 +65,7 @@ impl MyEguiApp {
         ui.checkbox(&mut self.settings.steam.optimize_for_big_picture, "Optimize for big picture").on_hover_text("Set icons to be larger horizontal images, this looks nice in steam big picture mode, but a bit off in desktop mode");
         ui.checkbox(
             &mut self.settings.steam.stop_steam,
-            "Stop Steam before import",
+            "导入前停止 Steam",
         )
         .on_hover_text("Stops Steam if it is running when import starts");
         ui.checkbox(
