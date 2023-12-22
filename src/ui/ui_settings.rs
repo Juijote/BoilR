@@ -21,9 +21,11 @@ impl MyEguiApp {
         scroll_style.visuals.widgets.hovered.bg_fill = EXTRA_BACKGROUND_COLOR;
 
         // 创建 FontDefinitions 并设置中文字体路径
-        let font_definitions = egui::FontDefinitions::default()
-            .family("../font.ttf")  // 替换成你的中文字体文件的路径
-            .size(16.0);  // 设置字体大小
+        let font_definitions = egui::FontDefinitions {
+            family: Some("../font.ttf".to_owned()),  // 替换成你的中文字体文件的路径
+            size: 16.0,  // 设置字体大小
+            ..Default::default()
+        };
 
         // 创建 Context 时传递 FontDefinitions
         let mut ctx = egui::Context::create_with_defaults();
