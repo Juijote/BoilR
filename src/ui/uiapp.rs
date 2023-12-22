@@ -262,9 +262,9 @@ impl App for MyEguiApp {
                     let size = texture.size_vec2();
                     let save_button = ImageButton::new(texture, size * 0.5);
 
-                    if ui.add(save_button).on_hover_text("Save settings").clicked() {
+                    if ui.add(save_button).on_hover_text("保存设置").clicked() {
                         if let Err(err) = save_settings(&self.settings, &self.platforms){
-                            eprintln!("Failed to save settings: {err:?}");
+                            eprintln!("保存设置失败: {err:?}");
                         }
                     }
                 });
@@ -344,7 +344,7 @@ fn setup(ctx: &egui::Context) {
 pub fn run_sync() -> eyre::Result<()>{
     let mut app = MyEguiApp::new()?;
     while !all_ready(&app.games_to_sync) {
-        println!("Finding games, trying again in 500ms");
+        println!("搜索游戏，500 ms 后重试");
         std::thread::sleep(Duration::from_secs_f32(0.5));
     }
     app.run_sync_blocking()
@@ -369,7 +369,7 @@ pub fn run_ui(args: Vec<String>) -> eyre::Result<()>{
             setup(&cc.egui_ctx);
             Box::new(app)
         }));
-    run_result.map_err(|e| eyre::eyre!("Could not initialize: {:?}", e))
+    run_result.map_err(|e| eyre::eyre!("无法初始化: {:?}", e))
 }
 
 fn is_fullscreen(args: &[String]) -> bool {

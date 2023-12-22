@@ -2,6 +2,8 @@ name: Create Release Builds
 
 on:
   push:
+    tags:
+      - "v.*.*.*" # matches v.1.0.1 etc
     paths:
       - '**'  # 仅监测所有文件的变更
     if: 'contains(github.event.commits[0].message, "up") || contains(github.event.commits[0].message, "汉化")'

@@ -11,7 +11,7 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 impl MyEguiApp {
     pub(crate) fn render_settings(&mut self, ui: &mut egui::Ui) {
-        ui.heading("Settings");
+        ui.heading("设置");
 
         let mut scroll_style = ui.style_mut();
         scroll_style.visuals.extreme_bg_color = BACKGROUND_COLOR;
@@ -34,7 +34,7 @@ impl MyEguiApp {
                     platform.render_ui(ui);
                     ui.add_space(SECTION_SPACING);
                 }
-                ui.label(format!("Version: {VERSION}"));
+                ui.label(format!("版本: {VERSION}"));
             });
     }
 
@@ -48,7 +48,7 @@ impl MyEguiApp {
                 .location
                 .as_mut()
                 .unwrap_or(&mut empty_string);
-            ui.label("Steam Location: ");
+            ui.label("Steam 位置: ");
             if ui.text_edit_singleline(steam_location).changed() {
                 if steam_location.trim().is_empty() {
                     self.settings.steam.location = None;
@@ -59,7 +59,7 @@ impl MyEguiApp {
         });
         ui.checkbox(
             &mut self.settings.steam.create_collections,
-            "Create collections",
+            "创建收藏",
         )
         .on_hover_text("Tries to create a games collection for each platform");
         ui.checkbox(&mut self.settings.steam.optimize_for_big_picture, "Optimize for big picture").on_hover_text("Set icons to be larger horizontal images, this looks nice in steam big picture mode, but a bit off in desktop mode");
